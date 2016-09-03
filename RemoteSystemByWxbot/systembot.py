@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 class Systembot(WXBot):
-    CHROME_DRIVER_PATH='D:\\WebDrivers\\chromedriver_win32\\chromedriver.exe'
+    CHROME_DRIVER_PATH='./chromedriver'
     channel_list=[]
     channel_dict={}
     driver=None
@@ -17,7 +17,7 @@ class Systembot(WXBot):
 
     def set_dict(self):
         option=webdriver.ChromeOptions()
-        option.add_argument('Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')
+        option.add_argument('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36')
         option.add_extension('2.3.8_0.crx')
         option.add_extension('cntvLive_20160119.crx')
         channel_file=open('channellink.txt','r')
@@ -52,7 +52,6 @@ class Systembot(WXBot):
 
     def schedule(self):
         pass
-        self.channel_dict.h
 
     def handle_msg_all(self, msg):
         if msg['msg_type_id']==1:
@@ -77,7 +76,7 @@ class Systembot(WXBot):
                 ActionChains(self.driver).double_click(video).perform()
                 ActionChains(self.driver).double_click(video).perform()
             elif unicode(msg['content']['data']) == u'exit':
-                self.driver.quit()
+                self.driver.close()
                 sys.exit(0)
 
 
